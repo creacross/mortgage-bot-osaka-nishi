@@ -1,0 +1,13 @@
+{
+  "name": "mortgage-bot-osaka-nishi",
+  "version": "1.0.0",
+  "description": "大阪西区特化 住宅ローン相談 LINE Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "googleapis": "^130.0.0"
+  }
+}
