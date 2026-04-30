@@ -277,7 +277,7 @@ async function handleFollow(event) {
   await reply(event.replyToken, [
     {
       type: 'text',
-      text: '友だち追加ありがとうございます！\n\n大阪市西区を中心に地域密着で\n住宅ローンのご相談を承っております。\n\n📍 クレアクロス株式会社\n\n気軽にご相談ください。\n個人情報は厳重に管理し、\nご同意なく第三者に提供することはありません。'
+      text: '友だち追加ありがとうございます！\n\n大阪市西区を中心に地域密着で\n住宅ローンのご相談を承っております。\n\n📍 株式会社クレアクロス\n\n気軽にご相談ください。\n個人情報は厳重に管理し、\nご同意なく第三者に提供することはありません。'
     },
     {
       type: 'template',
@@ -484,6 +484,27 @@ async function handlePostback(event) {
       type: 'text',
       text: 'ありがとうございます！\nほぼ完了です。\n\n最後にお名前をお聞かせください。\n（ニックネームでもOKです）'
     }]);
+    return;
+  }
+
+  // 次のステップ選択
+  if (params.next) {
+    if (params.next === 'consult') {
+      await reply(event.replyToken, [{
+        type: 'text',
+        text: '承知しました！\n担当スタッフよりご連絡いたします。\n\nお急ぎの場合はこのチャットに\nメッセージをお送りください。\n\n📍 株式会社クレアクロス\n大阪市西区を中心に地域密着でサポートします。'
+      }]);
+    } else if (params.next === 'property') {
+      await reply(event.replyToken, [{
+        type: 'text',
+        text: '物件探しもお任せください！\n\n大阪市西区を中心に豊富な物件情報を\nご提案できます。\n\n担当スタッフより物件情報を\nお送りいたしますので少々お待ちください。'
+      }]);
+    } else if (params.next === 'later') {
+      await reply(event.replyToken, [{
+        type: 'text',
+        text: '承知しました！\n\nご検討の際はいつでもご連絡ください。\n「相談したい」と送っていただければ\n再度ご案内を開始します。\n\nどうぞお気軽にご相談ください😊'
+      }]);
+    }
     return;
   }
 }
