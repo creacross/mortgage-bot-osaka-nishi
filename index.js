@@ -88,9 +88,9 @@ function generateSimulation(answers) {
   const income   = (incomeMap[answers.income] || 500) * 10000;
   const years    = 35;
 
-  const v1 = calcMonthly(loan, 0.5,  years); // 変動0.5%
-  const v2 = calcMonthly(loan, 1.5,  years); // 固定10年1.5%
-  const v3 = calcMonthly(loan, 2.0,  years); // 全期間固定2.0%
+  const v1 = calcMonthly(loan, 1.0,  years); // 変動1.0%（2026年4月主要行平均）
+  const v2 = calcMonthly(loan, 2.75, years); // 固定10年2.75%（2026年4月主要行平均）
+  const v3 = calcMonthly(loan, 2.49, years); // 全期間固定2.49%（フラット35・2026年4月）
 
   const ratio = Math.round((v1 * 12) / income * 100);
 
@@ -131,13 +131,13 @@ function generateSimulation(answers) {
       ``,
       `▼ 借入想定額：${formatYen(loan)}`,
       ``,
-      `【変動金利 0.5%】`,
+      `【変動金利 1.0%】`,
       `　毎月：${formatYen(v1)}`,
       ``,
-      `【固定10年 1.5%】`,
+      `【固定10年 2.75%】`,
       `　毎月：${formatYen(v2)}`,
       ``,
-      `【全期間固定 2.0%】`,
+      `【全期間固定 2.49%（フラット35）】`,
       `　毎月：${formatYen(v3)}`,
       ``,
       `▼ 返済比率（変動基準）：${ratio}%`,
